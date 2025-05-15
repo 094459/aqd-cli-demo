@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ survey.title }} - Customer Survey App{% endblock %}
+
+{% block content %}
+<div class="survey-response-form">
+    <h2>{{ survey.title }}</h2>
+    
+    {% if survey.description %}
+        <p class="survey-description">{{ survey.description }}</p>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('survey.respond_to_survey', survey_id=survey.survey_id) }}">
+        <div class="form-group">
+            <label for="email">Your Email (Optional)</label>
+            <input type="email" id="email" name="email">
+            <p class="help-text">Providing your email is optional and will only be used to track responses.</p>
+        </div>
+        
+        <div class="survey-options">
+            <h3>Please select one option:</h3>
+            
+            {% for option in options %}
+                <div class="form-group radio">
+                    <input type="radio" id="option_{{ option.option_id }}" name="option_id" value="{{ option.option_id }}" required>
+                    <label for="option_{{ option.option_id }}">{{ option.option_text }}</label>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit Response</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

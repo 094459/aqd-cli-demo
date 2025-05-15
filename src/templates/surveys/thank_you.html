@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Thank You - Customer Survey App{% endblock %}
+
+{% block content %}
+<div class="thank-you">
+    <h2>Thank You!</h2>
+    <p>Your response has been recorded. We appreciate your feedback.</p>
+    <a href="{{ url_for('main.index') }}" class="btn btn-primary">Return to Home</a>
+</div>
+{% endblock %}

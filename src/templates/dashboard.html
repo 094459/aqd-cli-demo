@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Customer Survey App{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Welcome to Your Dashboard</h2>
+    
+    <div class="app-description">
+        <h3>About Customer Survey App</h3>
+        <p>This application helps you create and manage customer surveys. You can:</p>
+        <ul>
+            <li>Create custom surveys with multiple choice options</li>
+            <li>Share surveys with customers via a unique link</li>
+            <li>View and analyze survey responses</li>
+            <li>Track customer feedback over time</li>
+        </ul>
+    </div>
+    
+    <div class="survey-section">
+        <div class="section-header">
+            <h3>Your Surveys</h3>
+            <a href="{{ url_for('survey.create_survey') }}" class="btn btn-primary">Create New Survey</a>
+        </div>
+        
+        {% if surveys %}
+            <div class="survey-list">
+                {% for survey in surveys %}
+                    <div class="survey-card">
+                        <div class="survey-info">
+                            <h4>{{ survey.title }}</h4>
+                            <p>{{ survey.description }}</p>
+                            <div class="survey-meta">
+                                <span class="status {{ 'active' if survey.is_active else 'inactive' }}">
+                                    {{ 'Active' if survey.is_active else 'Inactive' }}
+                                </span>
+                                <span class="responses">{{ survey.get_response_count() }} responses</span>
+                                <span class="date">Created: {{ survey.created_at.strftime('%Y-%m-%d') }}</span>
+                            </div>
+                        </div>
+                        <div class="survey-actions">
+                            <a href="{{ url_for('survey.view_survey', survey_id=survey.survey_id) }}" class="btn btn-secondary">View</a>
+                            <a href="{{ url_for('survey.view_results', survey_id=survey.survey_id) }}" class="btn btn-info">Results</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <p>You haven't created any surveys yet.</p>
+                <a href="{{ url_for('survey.create_survey') }}" class="btn btn-primary">Create Your First Survey</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Results: {{ survey.title }} - Customer Survey App{% endblock %}
+
+{% block content %}
+<div class="survey-results">
+    <div class="results-header">
+        <h2>Survey Results: {{ survey.title }}</h2>
+        <a href="{{ url_for('survey.view_survey', survey_id=survey.survey_id) }}" class="btn btn-secondary">Back to Survey</a>
+    </div>
+    
+    {% if survey.description %}
+        <p class="survey-description">{{ survey.description }}</p>
+    {% endif %}
+    
+    <div class="results-summary">
+        <p>Total Responses: <strong>{{ total_responses }}</strong></p>
+    </div>
+    
+    {% if total_responses > 0 %}
+        <div class="results-chart">
+            {% for result in results %}
+                <div class="result-item">
+                    <div class="result-label">{{ result.option.option_text }}</div>
+                    <div class="result-bar-container">
+                        <div class="result-bar" style="width: {{ result.percentage }}%"></div>
+                        <div class="result-percentage">{{ result.percentage }}%</div>
+                    </div>
+                    <div class="result-count">{{ result.count }} votes</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-results">
+            <p>No responses yet. Share your survey to collect feedback.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

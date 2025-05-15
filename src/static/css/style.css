@@ -1,0 +1,582 @@
+/* Base Styles */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --text-color: #333;
+    --border-color: #ddd;
+    --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header */
+header {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 1.5rem;
+}
+
+.nav-links a {
+    color: white;
+    font-weight: 500;
+}
+
+/* Main Content */
+main {
+    padding: 2rem 0;
+    min-height: calc(100vh - 140px);
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+footer .version {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.btn-warning {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-text {
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+.btn:hover {
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.form-group.checkbox,
+.form-group.radio {
+    display: flex;
+    align-items: center;
+}
+
+.form-group.checkbox input,
+.form-group.radio input {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+.form-group.checkbox label,
+.form-group.radio label {
+    margin-bottom: 0;
+}
+
+.form-actions {
+    margin-top: 1.5rem;
+}
+
+.help-text {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+/* Flash Messages */
+.flash-messages {
+    margin-bottom: 1.5rem;
+}
+
+.flash-message {
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.flash-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-message.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flash-message.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.flash-message.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+/* Auth Forms */
+.auth-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.auth-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.auth-links {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* Welcome Section */
+.welcome-section {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.cta-buttons {
+    margin: 2rem 0;
+}
+
+.cta-buttons .btn {
+    margin: 0 0.5rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.feature {
+    flex: 1;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin: 0 1rem;
+}
+
+/* Dashboard */
+.dashboard {
+    padding: 1rem 0;
+}
+
+.app-description {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.app-description ul {
+    margin-left: 1.5rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.survey-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.survey-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.survey-info h4 {
+    margin-bottom: 0.5rem;
+}
+
+.survey-meta {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #666;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status.active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.survey-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+/* Survey Form */
+.survey-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+/* Survey Detail */
+.survey-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.survey-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.survey-description {
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.options-list {
+    list-style-position: inside;
+    margin-bottom: 1.5rem;
+}
+
+.options-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.options-list li:last-child {
+    border-bottom: none;
+}
+
+.survey-share {
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--light-color);
+    border-radius: 4px;
+}
+
+.share-link-container {
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+.share-link-container input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px 0 0 4px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.share-link-container button {
+    border-radius: 0 4px 4px 0;
+}
+
+.survey-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.inline-form {
+    display: inline;
+}
+
+/* Survey Results */
+.survey-results {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.results-summary {
+    margin-bottom: 2rem;
+}
+
+.result-item {
+    margin-bottom: 1.5rem;
+}
+
+.result-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.result-bar-container {
+    height: 2rem;
+    background-color: var(--light-color);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.result-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 4px 0 0 4px;
+}
+
+.result-percentage {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+
+.result-count {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #666;
+    text-align: right;
+}
+
+.empty-results {
+    text-align: center;
+    padding: 2rem 0;
+    color: #666;
+}
+
+/* Survey Response Form */
+.survey-response-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+/* Thank You Page */
+.thank-you {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.thank-you h2 {
+    color: var(--success-color);
+    margin-bottom: 1rem;
+}
+
+.thank-you .btn {
+    margin-top: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+    }
+    
+    .feature {
+        margin: 1rem 0;
+    }
+    
+    .survey-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .survey-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .survey-actions {
+        flex-direction: column;
+    }
+    
+    .survey-actions .btn {
+        width: 100%;
+    }
+}
