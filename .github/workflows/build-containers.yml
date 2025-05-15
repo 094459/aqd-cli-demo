@@ -32,7 +32,6 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ github.repository_owner }}/customer-survey-app
             ghcr.io/${{ github.repository }}
           tags: |
             type=semver,pattern={{version}}
