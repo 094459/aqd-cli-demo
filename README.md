@@ -1,7 +1,5 @@
 # Customer Survey Application
 
-[![Build and Push Container Images](https://github.com/username/customer-survey-app/actions/workflows/build-containers.yml/badge.svg)](https://github.com/username/customer-survey-app/actions/workflows/build-containers.yml)
-
 A simple web application for creating and managing customer surveys.
 
 ## Features
@@ -11,6 +9,108 @@ A simple web application for creating and managing customer surveys.
 - Share surveys via unique links
 - View and analyze survey results
 - Track customer feedback
+
+## Authentication Flow Diagrams
+
+### User Registration Process
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Browser
+    participant RegisterRoute as /register Route
+    participant UserModel as User Model
+    participant Database
+    
+    User->>Browser: Navigate to registration page
+    Browser->>RegisterRoute: GET /register
+    RegisterRoute->>Browser: Return registration form
+    
+    User->>Browser: Fill in email and password
+    Browser->>RegisterRoute: POST /register with form data
+    
+    RegisterRoute->>RegisterRoute: Validate form data
+    alt Invalid form data
+        RegisterRoute->>Browser: Return form with error messages
+        Browser->>User: Display validation errors
+    else Valid form data
+        RegisterRoute->>UserModel: Check if email exists
+        UserModel->>Database: Query for existing user
+        Database->>UserModel: Return result
+        
+        alt Email already exists
+            UserModel->>RegisterRoute: User already exists
+            RegisterRoute->>Browser: Return form with error message
+            Browser->>User: Display "Email already registered"
+        else Email available
+            RegisterRoute->>UserModel: Create new user
+            UserModel->>UserModel: Hash password
+            UserModel->>Database: Save new user
+            Database->>UserModel: Confirm save
+            UserModel->>RegisterRoute: User created
+            RegisterRoute->>Browser: Redirect to login page with success message
+            Browser->>User: Display success message and login form
+        end
+    end
+```
+
+### User Login Process
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Browser
+    participant LoginRoute as /login Route
+    participant UserModel as User Model
+    participant Database
+    participant FlaskLogin as Flask-Login
+    participant Dashboard as /dashboard Route
+    
+    User->>Browser: Navigate to login page
+    Browser->>LoginRoute: GET /login
+    LoginRoute->>Browser: Return login form
+    
+    User->>Browser: Enter email and password
+    Browser->>LoginRoute: POST /login with credentials
+    
+    LoginRoute->>UserModel: Find user by email
+    UserModel->>Database: Query for user
+    Database->>UserModel: Return user data
+    
+    alt User not found
+        UserModel->>LoginRoute: User not found
+        LoginRoute->>Browser: Return form with error message
+        Browser->>User: Display "Invalid email or password"
+    else User found
+        UserModel->>UserModel: Check password hash
+        
+        alt Invalid password
+            UserModel->>LoginRoute: Invalid password
+            LoginRoute->>Browser: Return form with error message
+            Browser->>User: Display "Invalid email or password"
+        else Valid password
+            UserModel->>LoginRoute: Authentication successful
+            LoginRoute->>UserModel: Update last login timestamp
+            UserModel->>Database: Save updated timestamp
+            
+            LoginRoute->>FlaskLogin: Log in user (login_user)
+            FlaskLogin->>FlaskLogin: Create user session
+            
+            alt Remember me checked
+                FlaskLogin->>Browser: Set long-term session cookie
+            else Remember me not checked
+                FlaskLogin->>Browser: Set session cookie
+            end
+            
+            LoginRoute->>Browser: Redirect to dashboard
+            Browser->>Dashboard: GET /dashboard
+            Dashboard->>Database: Query user's surveys
+            Database->>Dashboard: Return survey data
+            Dashboard->>Browser: Return dashboard view
+            Browser->>User: Display dashboard with surveys
+        end
+    end
+```
 
 ## Project Structure
 
@@ -31,6 +131,8 @@ The application uses the following database tables:
 - Surveys: Store survey information
 - Survey_Options: Store survey options
 - Survey_Responses: Store survey responses
+
+For a detailed ERD, see [data-model.md](data-model.md).
 
 ## Installation
 
